@@ -20,6 +20,12 @@ body {
 	background-color: var(--vlightGrayBlue);
 }
 
+.overflow {
+	overflow-x: hidden;
+	position: relative;
+	padding-top: 2em;
+}
+
 .container {
 	width: 90%;
 	margin: 0 auto;
@@ -39,7 +45,7 @@ header h1 {
 
 .top__pattern {
 	position: absolute;
-	top: -44px;
+	top: -34px;
 	right: -186px;
 	max-width: 100%;
 	z-index: -1;
@@ -57,7 +63,7 @@ header h1 {
 	font-size: 0.8rem;
 }
 
-label {
+.toggle {
 	background: var(--gradient);
 	width: 50px;
 	height: 28px;
@@ -66,12 +72,19 @@ label {
 	position: relative;
 	display: flex;
 	align-items: center;
+	cursor: pointer;
+	/* transition: 0.2s; */
 }
-label input {
+
+.toggle:hover {
+	background: hsl(236, 72%, 79%);
+}
+
+input {
 	transform: scale(0);
 }
 
-label::after {
+.toggle::after {
 	position: absolute;
 	content: '';
 	width: 22px;
@@ -79,6 +92,11 @@ label::after {
 	border-radius: 50%;
 	background-color: var(--vlightGrayBlue);
 	left: 3px;
+	transition: 0.5s ease;
+}
+
+#checkbox:checked ~ .toggle::after {
+	left: 25px;
 }
 
 .pricing__card {
@@ -87,6 +105,11 @@ label::after {
 	margin-bottom: 2em;
 	border-radius: 5px;
 	color: var(--grayBlue);
+	box-shadow: 0px 5px 27px -9px var(--grayBlue);
+	animation-name: fadeIn;
+	animation-duration: 3s;
+	animation-timing-function: ease;
+	animation-fill-mode: forwards;
 }
 
 .pricing__card h3 {
@@ -98,6 +121,17 @@ label::after {
 	color: var(--darkGrayBlue);
 	padding-bottom: 0.5em;
 	border-bottom: solid 1px var(--lightGrayBlue);
+	/* transition: 1s ease; */
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
 }
 
 .features p {
@@ -109,6 +143,7 @@ label::after {
 	margin-top: 2em;
 	padding: 1em 0;
 	background: var(--gradient);
+	border: solid 2px white;
 	text-decoration: none;
 	color: white;
 	text-transform: uppercase;
@@ -118,6 +153,13 @@ label::after {
 	font-weight: 400;
 	letter-spacing: 2px;
 	font-size: 0.8rem;
+	transition: 0.5s ease;
+}
+
+.btn:hover {
+	background: white;
+	color: var(--grayBlue);
+	border: solid 2px var(--grayBlue);
 }
 
 .pro {
@@ -132,4 +174,50 @@ label::after {
 .pro a {
 	background: var(--vlightGrayBlue);
 	color: var(--grayBlue);
+}
+
+.pro a:hover {
+	background: transparent;
+	color: white;
+	border-color: white;
+}
+
+.bottom__pattern {
+	position: absolute;
+	transform: scale(0);
+}
+
+@media (min-width: 800px) {
+	header {
+		margin: 0;
+		padding-top: 2em;
+	}
+
+	.top__pattern {
+		right: 0;
+		top: 0;
+	}
+	.flex {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 3em;
+	}
+
+	.pricing__card {
+		padding-left: 2em;
+		padding-right: 2em;
+	}
+
+	.pro {
+		padding-bottom: 3em;
+		padding-top: 3em;
+	}
+
+	.bottom__pattern {
+		left: 0;
+		bottom: 0;
+		z-index: -1;
+		transform: scale(1);
+	}
 }
